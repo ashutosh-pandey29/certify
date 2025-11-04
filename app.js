@@ -9,3 +9,5 @@ const app = express();
 app.get("/", (req, res) => {
   res.send("<h1>Hello welcome new era</h1>")
 });
+
+export default app;
