@@ -1,53 +1,68 @@
 import express from "express";
 import cors from "cors";
-
-// making app
-
-const app = express();
+import { errorHandler } from "./middlewares/errorHandler.middleware.js";
+import { STATUS_CODES } from "./utils/statusCode.js";
 
 
+// Initialize Express application instance
+const app = express(); 
+
+
+
+
+// middleware
+app.use(cors());
+
+app.use(express.json()); // handle application/json
+app.use(express.urlencoded({ extended: true })); // handle form-data (x-www-form-urlencoded)
+
+
+
+
+
+/**
+ * *************************
+ * ! importing all routes
+ * *************************
+ */
+import authRoutes from "./routes/auth.routes.js";
+// import studentRoutes from "./routes/student.routes.js";
+// import adminRoutes from "./routes/admin.routes.js";
+
+
+//! API routes
+app.use("/auth", authRoutes);
+
+
+
+// home route
 app.get("/", (req, res) => {
   res.send(`
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certify Portal - Coming Soon</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #007bff, #6610f2);
-      color: white;
+    <h1 style="
       text-align: center;
-      height: 100vh;
+      height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-    }
-    h1 {
       font-size: 2.5rem;
-    }
-    p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-  </style>
-</head>
-<body>
-  <h1>🚀 Certify Portal</h1>
-  <p>Coming Soon...</p>
-</body>
-</html>
+      flex-direction: column;
+    ">
+      Certify Portal Coming Soon 🚀
+    </h1>
+  `);
+});
 
-  `)
+// handle invalid routes after all route imports
+app.use((req, res, next) => {
+  const error = new Error(`Route ${req.originalUrl} not found`);
+  error.statusCode = STATUS_CODES.NOT_FOUND;
+  next(error);
 });
 
 
 
+//! global error handler -> middleware 
 
-
-
+app.use(errorHandler);
 
 export default app;
