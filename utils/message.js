@@ -1,11 +1,12 @@
 export const MESSAGES = {
   AUTH: {
-    REGISTER_SUCCESS: "Registration successful!",
+    REGISTER_SUCCESS: "Registration successful! Now login to continue...",
     LOGIN_SUCCESS: "Login successful! Redirecting to your dashboard...",
     LOGOUT_SUCCESS: "You’ve been logged out successfully.",
     INVALID_CREDENTIALS: "Incorrect email or password. Please try again.",
-    USER_NOT_FOUND: "No account found with this email address.",
-    USER_ALREADY_EXISTS: "An account with this email already exists.",
+    USER_NOT_FOUND: "No account found with this username or email  address.",
+    USER_NOT_CREATED: "User could not be crated",
+    USER_ALREADY_EXISTS: "An account with this email or username already exists.",
     PASSWORD_RESET_SUCCESS: "Your password has been reset successfully.",
     PASSWORD_RESET_FAILED: "Password reset failed. Please try again later.",
     TOKEN_EXPIRED: "Your session has expired. Please log in again.",

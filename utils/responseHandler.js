@@ -1,5 +1,5 @@
 // utils/responseHandler.js
-import { STATUS_CODES } from "./statusCodes.js";
+import { STATUS_CODES } from "./statusCode.js";
 
 /**
  * Sends a consistent API response
@@ -12,8 +12,8 @@ import { STATUS_CODES } from "./statusCodes.js";
 
 export const sendResponse = (
   res,
-  statusCode = STATUS_CODES.OK,
   success = true,
+  statusCode = STATUS_CODES.OK,
   message = "",
   data = null
 ) => {

@@ -26,12 +26,17 @@ app.use(express.urlencoded({ extended: true })); // handle form-data (x-www-form
  * *************************
  */
 import authRoutes from "./routes/auth.routes.js";
-// import studentRoutes from "./routes/student.routes.js";
-// import adminRoutes from "./routes/admin.routes.js";
+import profileRoutes from "./routes/profile.routes.js";
+import studentRoutes from "./routes/student.routes.js";
+// import certificateRoutes from "./routes/certificate.routes.js";
+
 
 
 //! API routes
 app.use("/auth", authRoutes);
+app.use("/profile", profileRoutes);
+app.use("/student" ,  studentRoutes)
+// app.use("/certificate", certificateRoutes);
 
 
 

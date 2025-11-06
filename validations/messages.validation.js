@@ -14,6 +14,12 @@ export const VALIDATION_MESSAGES = {
   NAME_MIN: "Name must be at least 3 characters.",
   NAME_MAX: "Name must not exceed 30 characters.",
 
+  USERNAME_REQUIRED: "Username is required.",
+  USERNAME_MIN: "Username must be at least 3 characters.",
+  USERNAME_MAX: "Username must not exceed 30 characters.",
+  USERNAME_INVALID: "Username can only contain letters, numbers, dots (.) or hyphens (-).",
+
+
   EMAIL_REQUIRED: "Email address is required.",
   EMAIL_INVALID: "Please enter a valid email address.",
 
