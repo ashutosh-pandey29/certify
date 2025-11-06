@@ -13,5 +13,4 @@ router.post("/forget-password", forgetPassword);
 router.post("reset-password" ,  resetPassword)
 router.post("/change-password",validate(ChangePasswordSchema), isAuthenticated ,  changePassword);
 
-
 export default router;

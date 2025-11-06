@@ -7,7 +7,6 @@ configDotenv();
 
 
 export const errorHandler = (err, req, res, next) => {
-  console.error("Error:", err.message);
 
   const statusCode = err.statusCode || STATUS_CODES.INTERNAL_SERVER_ERROR;
   const message = err.message || MESSAGES.SYSTEM.SERVER_ERROR;

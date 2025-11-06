@@ -17,7 +17,7 @@ export const authRegisterSchema = Joi.object({
   username: Joi.string()
     .min(3)
     .max(30)
-    .pattern(/^[a-zA-Z0-9]+([.-]?[a-zA-Z0-9]+)*$/) // alphanumeric with optional . or -
+    .pattern(/^(?=[a-zA-Z0-9.-]{3,30}$)(?!.*[.-]{2})(?![.-])[a-zA-Z0-9.-]+(?<![.-])$/) // alphanumeric with optional . or -
     .required()
     .messages({
       "string.empty": VALIDATION_MESSAGES.USERNAME_REQUIRED,
