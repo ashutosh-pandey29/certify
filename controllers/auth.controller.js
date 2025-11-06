@@ -60,7 +60,6 @@ export const loginUser = async (req, res) => {
 
     console.log("Fetched User =>", isUser);
 
-
     if (!isUser)
       return sendResponse(res, false, STATUS_CODES.NOT_FOUND, MESSAGES.AUTH.USER_NOT_FOUND);
 
@@ -85,7 +84,7 @@ export const loginUser = async (req, res) => {
       return sendResponse(res, true, STATUS_CODES.OK, MESSAGES.AUTH.LOGIN_SUCCESS, {
         token: token,
         username: user.username,
-        isAdmin:user.isAdmin
+        isAdmin: user.isAdmin,
       });
     }
   } catch (err) {
@@ -103,16 +102,46 @@ export const forgetPassword = (req, res) => {
   res.send("Forget password route hit");
 };
 
-export const changePassword = (req, res) => {
-  res.send("Change password route hit");
+export const changePassword = async (req, res) => {
+  try {
+    // finding user
+
+    const user = await User.findOne({ username: req.user.username });
+
+    if (!user) {
+      throw new Error("error occurred during searching user");
+    }
+
+    const { oldPassword, newPassword } = req.body;
+
+    // verify old password
+    const isVerified = await bcrypt.compare(oldPassword, user.password);
+
+    if (!isVerified) {
+      throw new Error("Password verification failed");
+    }
+
+    // hash new password
+    const hashedPassword = await  bcrypt.hash(newPassword, 10);
+
+    user.password = hashedPassword;
+
+    const isUpdated = await user.save();
+
+    if (!isUpdated) {
+      throw new Error(MESSAGES.AUTH.PASSWORD_RESET_FAILED);
+    }
+    return sendResponse(res, false, STATUS_CODES.OK, MESSAGES.AUTH.PASSWORD_RESET_SUCCESS);
+  } catch (err) {
+    return sendResponse(
+      res,
+      false,
+      STATUS_CODES.INTERNAL_SERVER_ERROR,
+      MESSAGES.SYSTEM.SERVER_ERROR
+    );
+  }
 };
 
-export const isLoggedIn = (req, res) => {
-  res.send("User login check route hit");
-};
-
-export const alluser = async (req, res) => {
-  let data = await User.find();
-
-  res.json(data);
-};
+export const resetPassword = (req, res) => {
+  console.log("reset password ");
+}
