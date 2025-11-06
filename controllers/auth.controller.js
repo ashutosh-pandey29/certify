@@ -10,6 +10,12 @@ import { sendResponse } from "../utils/responseHandler.js";
 //config env
 dotenv.config();
 
+/**
+ * =================================================
+ * ! REGISTER USER  CONTROLLER
+ * ==================================================
+ */
+
 export const registerUser = async (req, res) => {
   try {
     const { username, email, password, isAdmin } = req.body;
@@ -48,6 +54,12 @@ export const registerUser = async (req, res) => {
     );
   }
 };
+
+/**
+ * =================================================
+ * ! LOGIN USER  CONTROLLER
+ * ==================================================
+ */
 
 export const loginUser = async (req, res) => {
   try {
@@ -98,9 +110,11 @@ export const loginUser = async (req, res) => {
   }
 };
 
-export const forgetPassword = (req, res) => {
-  res.send("Forget password route hit");
-};
+/**
+ * =================================================
+ * ! CHANGE  PASSWORD CONTROLLER
+ * ==================================================
+ */
 
 export const changePassword = async (req, res) => {
   try {
@@ -122,7 +136,7 @@ export const changePassword = async (req, res) => {
     }
 
     // hash new password
-    const hashedPassword = await  bcrypt.hash(newPassword, 10);
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     user.password = hashedPassword;
 
@@ -142,6 +156,21 @@ export const changePassword = async (req, res) => {
   }
 };
 
+/**
+ * =================================================
+ * ! FORGET PASSWORD CONTROLLER
+ * ==================================================
+ */
+
+export const forgetPassword = (req, res) => {
+  res.send("Forget password route hit");
+};
+
+/**
+ * =================================================
+ * ! RESET  PASSWORD CONTROLLER
+ * ==================================================
+ */
 export const resetPassword = (req, res) => {
   console.log("reset password ");
-}
+};
