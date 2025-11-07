@@ -14,13 +14,17 @@ export const MESSAGES = {
   },
 
   STUDENT: {
-    CREATED: "Student record created successfully",
-    UPDATED: "Student details updated successfully!",
-    DELETED: "Student record deleted successfully.",
-    NOT_FOUND: "Student record not found.",
-    DUPLICATE_ENTRY: "A student with this email or ID already exists.",
-    UPLOAD_SUCCESS: "Student data uploaded successfully!",
-    UPLOAD_FAILED: "Failed to upload student data. Please check your file.",
+  CREATED: "Student record created successfully.",
+  NOT_CREATED: "Failed to create student record.",
+  UPDATED: "Student details updated successfully!",
+  NOT_UPDATED: "Failed to update student details.",
+  DELETED: "Student record deleted successfully.",
+  NOT_DELETED: "Failed to delete student record.",
+  FOUND: "Student record retrieved successfully.",
+  NOT_FOUND: "Student record not found.",
+  DUPLICATE_ENTRY: "A student with this email or ID already exists.",
+  UPLOAD_SUCCESS: "Student data uploaded successfully!",
+  UPLOAD_FAILED: "Failed to upload student data. Please check your file.",
   },
 
   CERTIFICATE: {
@@ -35,6 +39,7 @@ export const MESSAGES = {
   },
 
   FILE: {
+    NOT_UPLOADED:"File not uploaded",
     UPLOAD_SUCCESS: "File uploaded successfully!",
     UPLOAD_FAILED: "File upload failed. Please try again.",
     INVALID_FORMAT: "Invalid file format. Please upload a valid Excel or PDF file.",
