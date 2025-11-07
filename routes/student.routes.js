@@ -21,21 +21,19 @@ const upload = multer({ storage });
 // View all students  ,
 router.get("/all", isAuthenticated, checkRole(["admin"]), getAllStudent);
 
-// Add a single student   isAuthenticated, checkRole(["admin"]),
+// Add a single student 
 router.post("/add", isAuthenticated, checkRole(["admin"]),validate(studentValidationSchema), addStudent);
 
 // Update a student isAuthenticated, checkRole(["admin"])
-router.put("/update/:student_id", isAuthenticated, checkRole(["admin"]),  updateStudent);
+router.put("/update/:student_id", isAuthenticated, checkRole(["admin"]),validate(studentValidationSchema) ,   updateStudent);
 
-// Delete a student  isAuthenticated, checkRole(["admin"]),
+// Delete a student 
 router.delete("/delete/:student_id", isAuthenticated, checkRole(["admin"]),  deleteStudent);
 
 // Add bulk students via Excel
-//  isAuthenticated, checkRole(["admin"]), 
 router.post("/read-excel", isAuthenticated, checkRole(["admin"]),  upload.single('excelFile') ,  addStudentViaExcel);
 
 //view student profile both admin and student can see 
-router.get("/:student_id", studentProfile);
-
+router.get("/:student_id",  isAuthenticated, checkRole(["admin" ,  "user"]), studentProfile);
 
 export default router;
