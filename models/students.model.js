@@ -18,10 +18,30 @@ const studentSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    course: {
+    internship_domain: {
       type: String,
       required: true,
       trim: true,
+    },
+    start_date: {
+      type: Date,
+      required: true,
+      trim: true,
+    },
+    end_date: {
+      type: Date,
+      required: true,
+      trim: true,
+    },
+    certificate_id: {
+      type: String,
+      trim: true,
+      default:null,
+    },
+    certificate_file_path: {
+      type: String,
+      trim: true,
+      default:null,
     },
     isCertificateIssued: {
       type: Boolean,

@@ -9,5 +9,22 @@ export const generateStudentId = () => {
 };
 
 export const generateCertificateId = () => {
-  return `CERT-${nanoid(6)}`;
+  const now = new Date();
+  const year = String(now.getFullYear()).slice(-2); // last 2 digits
+  return `CERT-${nanoid(6)}-${year}`;
 };
+
+export const parseExcelDate = (value) => {
+  if (!value) return null;
+
+  // If numeric (Excel serial date)
+  if (typeof value === "number") {
+    const excelEpoch = new Date(1899, 11, 30);
+    return new Date(excelEpoch.getTime() + value * 86400000);
+  }
+
+  const d = new Date(value);
+  return d instanceof Date && !isNaN(d) ? d : null;
+};
+
+

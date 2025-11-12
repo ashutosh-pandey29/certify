@@ -15,6 +15,7 @@ app.use(cors());
 
 app.use(express.json()); // handle application/json
 app.use(express.urlencoded({ extended: true })); // handle form-data (x-www-form-urlencoded)
+app.use(express.static("public"));
 
 
 
@@ -28,7 +29,7 @@ app.use(express.urlencoded({ extended: true })); // handle form-data (x-www-form
 import authRoutes from "./routes/auth.routes.js";
 import profileRoutes from "./routes/profile.routes.js";
 import studentRoutes from "./routes/student.routes.js";
-// import certificateRoutes from "./routes/certificate.routes.js";
+import certificateRoutes from "./routes/certificate.routes.js";
 
 
 
@@ -36,7 +37,7 @@ import studentRoutes from "./routes/student.routes.js";
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
 app.use("/student" ,  studentRoutes)
-// app.use("/certificate", certificateRoutes);
+app.use("/certificate", certificateRoutes);
 
 
 

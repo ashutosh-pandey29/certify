@@ -1,59 +1,49 @@
 import express from "express";
 import multer from "multer";
+
 import { isAuthenticated } from "../middlewares/isAuthenticated.js";
 import { checkRole } from "../middlewares/checkRole.middleware.js";
 import { studentValidationSchema } from "../validations/excelFileData.validation.js";
 import { validate } from "../middlewares/validator.middleware.js";
+
 import {
   getAllStudent,
   addStudent,
   updateStudent,
   deleteStudent,
-  addStudentViaExcel,
+  uploadStudent,
   studentProfile,
 } from "../controllers/student.controller.js";
 
 const router = express.Router();
 
-// multer configuration for excel file  reading
-
+// ----------------------
+// Multer configuration
+// ----------------------
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// View all students  ,
+// ----------------------
+// Routes
+// ----------------------
+
+// View all students (admin only)
 router.get("/all", isAuthenticated, checkRole(["admin"]), getAllStudent);
 
-// Add a single student
-router.post(
-  "/add",
-  isAuthenticated,
-  checkRole(["admin"]),
-  validate(studentValidationSchema),
-  addStudent
-);
+// Add a single student (admin only)
+router.post("/add", isAuthenticated, checkRole(["admin"]), validate(studentValidationSchema), addStudent);
 
-// Update a student isAuthenticated, checkRole(["admin"])
-router.put(
-  "/update/:student_id",
-  isAuthenticated,
-  checkRole(["admin"]),
-  validate(studentValidationSchema),
-  updateStudent
-);
+// Update a student (admin only)
+router.put("/update/:student_id", isAuthenticated, checkRole(["admin"]), validate(studentValidationSchema), updateStudent);
 
-// Delete a student
+
+// Delete a student (admin only)
 router.delete("/delete/:student_id", isAuthenticated, checkRole(["admin"]), deleteStudent);
 
-// Add bulk students via Excel
-router.post(
-  "/read-excel",
-  isAuthenticated,
-  checkRole(["admin"]),
-  upload.single("excelFile"),
-  addStudentViaExcel
-);
+// Bulk upload students via Excel (admin only)
+router.post("/upload", isAuthenticated, checkRole(["admin"]), upload.single("excelFile"), uploadStudent);
 
-//view student profile both admin and student can see
+// View student profile (admin or student)
 router.get("/:student_id", isAuthenticated, checkRole(["admin", "user"]), studentProfile);
 
 export default router;
