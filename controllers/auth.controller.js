@@ -70,7 +70,7 @@ export const loginUser = async (req, res) => {
       $or: [{ email: login_id }, { username: login_id }],
     });
 
-    console.log("Fetched User =>", isUser);
+    // console.log("Fetched User =>", isUser);
 
     if (!isUser)
       return sendResponse(res, false, STATUS_CODES.NOT_FOUND, MESSAGES.AUTH.USER_NOT_FOUND);
@@ -90,7 +90,7 @@ export const loginUser = async (req, res) => {
     };
 
     // signing token , expire in 1 hr
-    const token = jwt.sign(jwtPayload, process.env.JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign(jwtPayload, process.env.JWT_SECRET, { expiresIn: "1d" });
 
     if (token) {
       return sendResponse(res, true, STATUS_CODES.OK, MESSAGES.AUTH.LOGIN_SUCCESS, {
@@ -100,7 +100,7 @@ export const loginUser = async (req, res) => {
       });
     }
   } catch (err) {
-    console.error("Login Error:", err);
+    // console.error("Login Error:", err);
     return sendResponse(
       res,
       false,
