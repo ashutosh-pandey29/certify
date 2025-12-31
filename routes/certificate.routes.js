@@ -6,7 +6,7 @@ import {downloadCertificate,verifyCertificate} from "../controllers/certificate.
 const router = express.Router();
   
 //? download certificate via student id or certificate id
-router.get("/download/:id" , isAuthenticated, checkRole(["admin", "user"]), downloadCertificate); 
+router.get("/download/:id" , checkRole(["admin", "user"]), downloadCertificate); 
 
 //? anyone verify certificate(student id or certificate id) public route ,
 router.get("/verify/:id" , verifyCertificate);

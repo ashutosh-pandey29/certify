@@ -28,22 +28,22 @@ const upload = multer({ storage });
 // ----------------------
 
 // View all students (admin only)
-router.get("/all", isAuthenticated, checkRole(["admin"]), getAllStudent);
+router.get("/all", checkRole(["admin"]), getAllStudent);
 
 // Add a single student (admin only)
-router.post("/add", isAuthenticated, checkRole(["admin"]), validate(studentValidationSchema), addStudent);
+router.post("/add", checkRole(["admin"]), validate(studentValidationSchema), addStudent);
 
 // Update a student (admin only)
-router.put("/update/:student_id", isAuthenticated, checkRole(["admin"]), validate(studentValidationSchema), updateStudent);
+router.put("/update/:student_id", checkRole(["admin"]), validate(studentValidationSchema), updateStudent);
 
 
 // Delete a student (admin only)
-router.delete("/delete/:student_id", isAuthenticated, checkRole(["admin"]), deleteStudent);
+router.delete("/delete/:student_id", checkRole(["admin"]), deleteStudent);
 
 // Bulk upload students via Excel (admin only)
-router.post("/upload", isAuthenticated, checkRole(["admin"]), upload.single("excelFile"), uploadStudent);
+router.post("/upload", checkRole(["admin"]), upload.single("excelFile"), uploadStudent);
 
 // View student profile (admin or student)
-router.get("/:student_id", isAuthenticated, checkRole(["admin", "user"]), studentProfile);
+router.get("/:student_id", checkRole(["admin", "user"]), studentProfile);
 
 export default router;
