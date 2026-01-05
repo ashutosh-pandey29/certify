@@ -16,7 +16,7 @@ export const getAllStudent = async (req, res) => {
         student_id: 1,
         name: 1,
         email: 1,
-        course: 1,
+        internship_domain: 1,
         isCertificateIssued: 1,
         _id: 0,
       })

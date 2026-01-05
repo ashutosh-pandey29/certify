@@ -30,9 +30,7 @@ coverage/
 *.tmp
 *.swp
 
-# Uploads / Certificates / Generated PDFs
-uploads/
-certificates/
+
 
 # IDE / Editor settings
 .vscode/
