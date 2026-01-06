@@ -10,9 +10,9 @@ export const studentValidationSchema = Joi.object({
     "string.email": "Invalid email format.",
     "string.empty": "Email is required.",
   }),
-  course: Joi.string().min(2).max(100).required().messages({
-    "string.empty": "Course name is required.",
-    "string.min": "Course name should be at least 2 characters long.",
+  internship_domain: Joi.string().min(2).max(100).required().messages({
+    "string.empty": "internship_domain is required.",
+    "string.min": "internship_domain  should be at least 2 characters long.",
   }),
   isCertificateIssued: Joi.boolean().optional(),
 });

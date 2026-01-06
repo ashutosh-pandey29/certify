@@ -155,7 +155,7 @@ export const uploadStudent = async (req, res) => {
 export const updateStudent = async (req, res) => {
   try {
     const { student_id } = req.params;
-    const { name, email, course, isCertificateIssued } = req.body;
+    const { name, email, internship_domain, isCertificateIssued } = req.body;
 
     const exist = await Student.findOne({ student_id });
     if (!exist) {
@@ -164,7 +164,7 @@ export const updateStudent = async (req, res) => {
 
     const isUpdated = await Student.findOneAndUpdate(
       { student_id },
-      { $set: { name, email, course, isCertificateIssued } }
+      { $set: { name, email, internship_domain, isCertificateIssued } }
     );
 
     if (!isUpdated) {
