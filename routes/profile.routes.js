@@ -12,6 +12,6 @@ import { getProfile } from "../controllers/profile.controller.js";
 
 const router = express.Router();
 
-router.get("/:username", getProfile);
+router.get("/:username",isAuthenticated,checkRole(["admin", "user"]), getProfile);
 
 export default router;

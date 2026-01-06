@@ -28,7 +28,12 @@ export const getAllStudent = async (req, res) => {
 
     return sendResponse(res, true, STATUS_CODES.OK, MESSAGES.STUDENT.FOUND, students);
   } catch (err) {
-    return sendResponse(res, false, STATUS_CODES.INTERNAL_SERVER_ERROR, MESSAGES.SYSTEM.SERVER_ERROR);
+    return sendResponse(
+      res,
+      false,
+      STATUS_CODES.INTERNAL_SERVER_ERROR,
+      MESSAGES.SYSTEM.SERVER_ERROR
+    );
   }
 };
 
@@ -60,11 +65,15 @@ export const addStudent = async (req, res) => {
 
     return sendResponse(res, true, STATUS_CODES.OK, MESSAGES.STUDENT.CREATED);
   } catch (err) {
-    return sendResponse(res, false, STATUS_CODES.INTERNAL_SERVER_ERROR, MESSAGES.STUDENT.SERVER_ERROR, err);
+    return sendResponse(
+      res,
+      false,
+      STATUS_CODES.INTERNAL_SERVER_ERROR,
+      MESSAGES.STUDENT.SERVER_ERROR,
+      err
+    );
   }
 };
-
-
 
 // ----------------------
 // Upload students via Excel
@@ -123,14 +132,22 @@ export const uploadStudent = async (req, res) => {
       message: `${insertedStudents.length} new record(s) inserted and certificates created successfully, ${existingStudents.length} duplicate record(s) skipped.`,
     };
 
-    return sendResponse(res, true, STATUS_CODES.OK, MESSAGES.STUDENT.UPLOAD_SUCCESS, responseSummary);
+    return sendResponse(
+      res,
+      true,
+      STATUS_CODES.OK,
+      MESSAGES.STUDENT.UPLOAD_SUCCESS,
+      responseSummary
+    );
   } catch (err) {
-    return sendResponse(res, false, STATUS_CODES.INTERNAL_SERVER_ERROR, MESSAGES.SYSTEM.SERVER_ERROR);
+    return sendResponse(
+      res,
+      false,
+      STATUS_CODES.INTERNAL_SERVER_ERROR,
+      MESSAGES.SYSTEM.SERVER_ERROR
+    );
   }
 };
-
-
-
 
 // ----------------------
 // Update a student
@@ -156,7 +173,13 @@ export const updateStudent = async (req, res) => {
 
     return sendResponse(res, true, STATUS_CODES.OK, MESSAGES.STUDENT.UPDATED);
   } catch (err) {
-    return sendResponse(res, false, STATUS_CODES.INTERNAL_SERVER_ERROR, MESSAGES.STUDENT.SERVER_ERROR, err);
+    return sendResponse(
+      res,
+      false,
+      STATUS_CODES.INTERNAL_SERVER_ERROR,
+      MESSAGES.STUDENT.SERVER_ERROR,
+      err
+    );
   }
 };
 
@@ -179,7 +202,13 @@ export const deleteStudent = async (req, res) => {
 
     return sendResponse(res, true, STATUS_CODES.OK, MESSAGES.STUDENT.DELETED);
   } catch (err) {
-    return sendResponse(res, false, STATUS_CODES.INTERNAL_SERVER_ERROR, MESSAGES.STUDENT.SERVER_ERROR, err);
+    return sendResponse(
+      res,
+      false,
+      STATUS_CODES.INTERNAL_SERVER_ERROR,
+      MESSAGES.STUDENT.SERVER_ERROR,
+      err
+    );
   }
 };
 
@@ -193,7 +222,7 @@ export const studentProfile = async (req, res) => {
       student_id: 1,
       name: 1,
       email: 1,
-      course: 1,
+      internship_domain: 1,
       isCertificateIssued: 1,
       _id: 0,
     });
@@ -204,6 +233,11 @@ export const studentProfile = async (req, res) => {
 
     return sendResponse(res, true, STATUS_CODES.OK, MESSAGES.STUDENT.FOUND, student);
   } catch (err) {
-    return sendResponse(res, false, STATUS_CODES.INTERNAL_SERVER_ERROR, MESSAGES.SYSTEM.SERVER_ERROR);
+    return sendResponse(
+      res,
+      false,
+      STATUS_CODES.INTERNAL_SERVER_ERROR,
+      MESSAGES.SYSTEM.SERVER_ERROR
+    );
   }
 };
