@@ -44,7 +44,6 @@ router.put(
   "/update/:student_id",
   isAuthenticated,
   checkRole(["admin"]),
-  validate(studentValidationSchema),
   updateStudent
 );
 
