@@ -54,7 +54,7 @@ export const addStudent = async (req, res) => {
       student_id,
       name: name.trim(),
       email: email.trim().toLowerCase(),
-      course: course.trim(),
+      internship_domain:internship_domain.trim(),
       isCertificateIssued: isCertificateIssued || false,
     });
 
